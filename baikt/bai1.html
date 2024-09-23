@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bài 1</title>
+
+</head>
+<body>
+
+<div>
+    <h2>Nhập số vào mảng</h2>
+    <label for="number">Số:</label>
+    <!-- Ô input giờ là kiểu number -->
+    <input type="number" id="number" step="1">
+    <input type="button" value="Thêm số vào mảng" onclick="addNumber()">
+    <input type="button" value="Tính trung bình các số chia hết cho 3" onclick="calculateAverage()">
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+
+    let numbers = new Array(50);
+    function addNumber() {
+        let numberInp = document.getElementById("number").valueAsNumber;
+            numbers.push(numberInp);
+            document.getElementById("result").innerHTML = `Mảng hiện tại: [${numbers.join(", ")}]`;
+            document.getElementById("number").value = "";
+    }
+
+    function calculateAverage() {
+        let chia3 = numbers.filter(num => num % 3 === 0);
+        if (chia3.length === 0) {
+            document.getElementById("result").innerHTML = "Không có số nào trong mảng chia hết cho 3";
+            return;
+        }
+
+        let sum = chia3.reduce((acc, num) => acc + num, 0);
+        let average = sum / chia3.length;  // Tính trung bình cộng
+
+        document.getElementById("result").innerHTML = `Trung bình cộng của các số chia hết cho 3: ${average}`;
+    }
+</script>
+
+</body>
+</html>
